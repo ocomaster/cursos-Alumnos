@@ -1,4 +1,5 @@
 <?php include('../template/cabecera.php'); ?>
+<?php include('../secciones/cursos.php'); ?>
 
 <div class="col-md-5">
 
@@ -10,18 +11,18 @@
         <div class="card-body">
             <div class="mb-3">
                 <label for="" class="form-label">ID</label>
-                <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="ID">
+                <input type="text" class="form-control" name="id" id="id" value="<?php echo $id ?>" aria-describedby="helpId" placeholder="ID">
             </div>
 
             <div class="mb-3">
                 <label for="" class="form-label">Nombre </label>
-                <input type="text" class="form-control" name="nombre_curso" id="nombre_curso" aria-describedby="helpId" placeholder="Nombre del curso">
+                <input type="text" class="form-control" name="nombre_curso" id="nombre_curso" value="<?php echo $nombre_curso ?>" aria-describedby="helpId" placeholder="Nombre del curso">
             </div>
 
             <div class="btn-group" role="group" aria-label="Button group name">
-                <button type="button" class="btn btn-success">Agregar</button>
-                <button type="button" class="btn btn-warning">Editar</button>
-                <button type="button" class="btn btn-danger">Borrar</button>
+                <button type="submit" name="accion" value="agregar" class="btn btn-success">Agregar</button>
+                <button type="submit" name="accion" value="editar" class="btn btn-warning">Editar</button>
+                <button type="submit" name="accion" value="borrar" class="btn btn-danger">Borrar</button>
             </div>
             </div>
 
@@ -42,16 +43,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="">
-                        <td scope="row">R1C1</td>
-                        <td>R1C2</td>
-                        <td>R1C3</td>
+                    <?php foreach ($listaCursos as  $curso) { ?>
+            
+                    <tr>
+                        <td><?= $curso['id'] ?></td>
+                        <td><?= $curso['nombre_curso'] ?></td>
+                        <td>
+
+                        <form action="" method="POST">
+                            <input type="hidden" name="id" id="id" value="<?= $curso['id'] ?>"/>
+                            <input type="submit" value="Seleccionar" name="accion" class="btn btn-info" />
+                        </form>
+
+                        </td>
                     </tr>
-                    <tr class="">
-                        <td scope="row">Item</td>
-                        <td>Item</td>
-                        <td>Item</td>
-                    </tr>
+                   <?php }?>
                 </tbody>
             </table>
         </div>
